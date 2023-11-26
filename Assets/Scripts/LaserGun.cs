@@ -7,8 +7,10 @@ public class LaserGun : MonoBehaviour
 {
     [SerializeField] private Animator laserAnimator;
     [SerializeField] private AudioClip laserSFX;
+    [SerializeField] private Transform raycastOrigin;
 
     private AudioSource laserAudioSource;
+    private RaycastHit hit;
 
     private void Awake() 
     {
@@ -22,5 +24,17 @@ public class LaserGun : MonoBehaviour
 
         //play laser gun SFX
         laserAudioSource.PlayOneShot(laserSFX);
+
+        //raycast
+        if(Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, out hit, 800f))
+        {
+            if(hit.transform.GetComponent<AsteroidHit>() != null)
+            {
+                hit.transform.GetComponent<AsteroidHit>().AsteroidDestroy();
+                
+                //destroy astreroid itself
+                Destroy(this.gameObject);
+            }
+        }
     }
 }
