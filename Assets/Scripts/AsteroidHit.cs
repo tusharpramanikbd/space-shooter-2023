@@ -9,5 +9,8 @@ public class AsteroidHit : MonoBehaviour
     public void AsteroidDestroy()
     {
         Instantiate(asteroidExplosion, transform.position, transform.rotation);
+
+        //destroy astreroid itself
+        Destroy(this.gameObject);
     }
 }

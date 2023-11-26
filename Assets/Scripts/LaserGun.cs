@@ -31,9 +31,6 @@ public class LaserGun : MonoBehaviour
             if(hit.transform.GetComponent<AsteroidHit>() != null)
             {
                 hit.transform.GetComponent<AsteroidHit>().AsteroidDestroy();
-                
-                //destroy astreroid itself
-                Destroy(this.gameObject);
             }
         }
     }
