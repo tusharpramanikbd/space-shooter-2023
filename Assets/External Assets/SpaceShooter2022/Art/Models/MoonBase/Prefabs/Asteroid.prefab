@@ -87,6 +87,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   asteroidExplosion: {fileID: 5587333519594629070, guid: c34c359c899647148a75c1c18db29282,
     type: 3}
+  baseScore: 10
+  popupCanvas: {fileID: 5738219260872704480, guid: 39499b5f4b1f040f0833b1ab920d19e2,
+    type: 3}
 --- !u!1001 &2996188979316244303
 PrefabInstance:
   m_ObjectHideFlags: 0
