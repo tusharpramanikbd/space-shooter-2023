@@ -33,9 +33,11 @@ public class AsteroidHit : MonoBehaviour
 
     private void CalculateScore()
     {
-        int asteroidScore = baseScore * (int)GetAsteroidDistance();
+        float asteroidDistance = GetAsteroidDistance();
 
-        InitPopupCanvas(asteroidScore);
+        int asteroidScore = baseScore * (int)asteroidDistance;
+
+        InitPopupCanvas(asteroidScore, asteroidDistance);
 
         gameController.UpdatePlayerScore(asteroidScore);
     }
@@ -47,9 +49,14 @@ public class AsteroidHit : MonoBehaviour
         return Vector3.Distance(transform.position, playerTransform.position);
     }
 
-    private void InitPopupCanvas(int asteroidScore)
+    private void InitPopupCanvas(int asteroidScore, float asteroidDistance)
     {
         popupCanvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = asteroidScore.ToString();
-        Instantiate(popupCanvas, transform.position, Quaternion.identity);
+        
+        GameObject asteroidPopup = Instantiate(popupCanvas, transform.position, Quaternion.identity);
+
+        asteroidPopup.transform.localScale = new Vector3(transform.localScale.x * (asteroidDistance / 10),
+                                                         transform.localScale.x * (asteroidDistance / 10),
+                                                         transform.localScale.x * (asteroidDistance / 10));
     }
 }
