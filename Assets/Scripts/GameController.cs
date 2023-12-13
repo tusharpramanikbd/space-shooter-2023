@@ -4,6 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+public enum GameState
+{
+    Waiting,
+    playing,
+    GameOver
+}
+
 public class GameController : MonoBehaviour
 {
     [SerializeField] private Image timerImage;
@@ -13,9 +20,19 @@ public class GameController : MonoBehaviour
     private float sliderCurrentFillAmount = 1f;
     private int playerScore;
 
+    public static GameState currentGameStatus;
+
+    private void Awake() 
+    {
+        currentGameStatus = GameState.Waiting;
+    }
+
     private void Update() 
     {
-        AdjustTimer();
+        if(currentGameStatus == GameState.playing)
+        {
+            AdjustTimer();
+        }
     }
 
     private void AdjustTimer()
@@ -27,6 +44,8 @@ public class GameController : MonoBehaviour
 
     public void UpdatePlayerScore(int asteroidHitPoints)
     {
+        if(currentGameStatus != GameState.playing) return;
+
         playerScore += asteroidHitPoints;
         scoreText.text = playerScore.ToString();
     }

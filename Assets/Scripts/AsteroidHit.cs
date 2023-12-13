@@ -25,8 +25,11 @@ public class AsteroidHit : MonoBehaviour
     {
         Instantiate(asteroidExplosion, transform.position, transform.rotation);
 
-        CalculateScore();
-
+        if(GameController.currentGameStatus == GameState.playing)
+        {
+            CalculateScore();
+        }
+        
         //destroy astreroid itself
         Destroy(this.gameObject);
     }

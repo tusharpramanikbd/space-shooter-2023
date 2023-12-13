@@ -26,7 +26,7 @@ public class LaserGun : MonoBehaviour
         laserAudioSource.PlayOneShot(laserSFX);
 
         //raycast
-        if(Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, out hit, 800f))
+        if(Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, out hit, 2000f))
         {
             if(hit.transform.GetComponent<AsteroidHit>() != null)
             {
