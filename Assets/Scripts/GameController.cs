@@ -49,4 +49,9 @@ public class GameController : MonoBehaviour
         playerScore += asteroidHitPoints;
         scoreText.text = playerScore.ToString();
     }
+
+    public void StartGame()
+    {
+        currentGameStatus = GameState.playing;
+    }
 }
