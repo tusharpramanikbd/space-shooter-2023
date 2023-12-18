@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -15,7 +13,12 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] private Image timerImage;
     [SerializeField] private float gameTime;
+
+    [Header("Score Components")]
     [SerializeField] private TextMeshProUGUI scoreText;
+
+    [Header("Game Over Components")]
+    [SerializeField] private GameObject gameOverScreen;
 
     private float sliderCurrentFillAmount = 1f;
     private int playerScore;
@@ -40,6 +43,11 @@ public class GameController : MonoBehaviour
         timerImage.fillAmount = sliderCurrentFillAmount - Time.deltaTime / gameTime;
 
         sliderCurrentFillAmount = timerImage.fillAmount;
+
+        if(sliderCurrentFillAmount <= 0)
+        {
+            GameOver();
+        }
     }
 
     public void UpdatePlayerScore(int asteroidHitPoints)
@@ -53,5 +61,27 @@ public class GameController : MonoBehaviour
     public void StartGame()
     {
         currentGameStatus = GameState.playing;
+    }
+
+    private void GameOver()
+    {
+        currentGameStatus = GameState.GameOver;
+
+        //show gameover screen
+        gameOverScreen.SetActive(true);
+    }
+
+
+    public void ResetGame()
+    {
+        currentGameStatus = GameState.Waiting;
+
+        //put timer to 1
+        sliderCurrentFillAmount = 1f;
+        timerImage.fillAmount = 1f;
+
+        //reset score
+        playerScore = 0;
+        scoreText.text = "0";
     }
 }
