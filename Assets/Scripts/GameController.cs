@@ -16,18 +16,34 @@ public class GameController : MonoBehaviour
 
     [Header("Score Components")]
     [SerializeField] private TextMeshProUGUI scoreText;
+    private float sliderCurrentFillAmount = 1f;
+    private int playerScore;
 
     [Header("Game Over Components")]
     [SerializeField] private GameObject gameOverScreen;
 
-    private float sliderCurrentFillAmount = 1f;
-    private int playerScore;
+    [Header("High Score Components")]
+    [SerializeField] private TextMeshProUGUI highScoreText;
 
     public static GameState currentGameStatus;
 
     private void Awake() 
     {
         currentGameStatus = GameState.Waiting;
+
+        InitHighScore();
+    }
+
+    private void InitHighScore()
+    {
+        if(PlayerPrefs.HasKey(Constants.HIGH_SCORE))
+        {
+            highScoreText.text = PlayerPrefs.GetInt(Constants.HIGH_SCORE).ToString();
+        }
+        else
+        {
+            PlayerPrefs.SetInt(Constants.HIGH_SCORE, 0);
+        }
     }
 
     private void Update() 
@@ -69,8 +85,18 @@ public class GameController : MonoBehaviour
 
         //show gameover screen
         gameOverScreen.SetActive(true);
+
+        SetHighScore();
     }
 
+    private void SetHighScore()
+    {
+        if(PlayerPrefs.HasKey(Constants.HIGH_SCORE) && playerScore > PlayerPrefs.GetInt(Constants.HIGH_SCORE))
+        {
+            PlayerPrefs.SetInt(Constants.HIGH_SCORE, playerScore);
+            highScoreText.text = playerScore.ToString();
+        }
+    }
 
     public void ResetGame()
     {
