@@ -25,6 +25,10 @@ public class GameController : MonoBehaviour
     [Header("High Score Components")]
     [SerializeField] private TextMeshProUGUI highScoreText;
 
+    [Header("Gameplay Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] audioClips;
+
     public static GameState currentGameStatus;
 
     private void Awake() 
@@ -77,11 +81,15 @@ public class GameController : MonoBehaviour
     public void StartGame()
     {
         currentGameStatus = GameState.playing;
+
+        PlayMusic(1);
     }
 
     private void GameOver()
     {
         currentGameStatus = GameState.GameOver;
+
+        PlayMusic(2, false);
 
         //show gameover screen
         gameOverScreen.SetActive(true);
@@ -102,6 +110,8 @@ public class GameController : MonoBehaviour
     {
         currentGameStatus = GameState.Waiting;
 
+        PlayMusic(0);
+
         //put timer to 1
         sliderCurrentFillAmount = 1f;
         timerImage.fillAmount = 1f;
@@ -109,5 +119,12 @@ public class GameController : MonoBehaviour
         //reset score
         playerScore = 0;
         scoreText.text = "0";
+    }
+
+    private void PlayMusic(int index, bool isLoop = true)
+    {
+        audioSource.clip = audioClips[index];
+        audioSource.Play();
+        audioSource.loop = isLoop;
     }
 }
