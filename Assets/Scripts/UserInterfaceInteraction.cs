@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class UserInterfaceInteraction : MonoBehaviour, IRayCastInterface
+public class UserInterfaceInteraction : MonoBehaviour, IHitInterface
 {
-    public UnityEvent onHitByRayCast; 
-    public void HitBtRayCast()
+    public UnityEvent onHitByLaserBeam; 
+    public void HitByLaserBeam()
     {
-        onHitByRayCast.Invoke();
+        onHitByLaserBeam.Invoke();
     }
 }

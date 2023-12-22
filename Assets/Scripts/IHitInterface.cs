@@ -1,0 +1,4 @@
+interface IHitInterface
+{
+    void HitByLaserBeam();
+}

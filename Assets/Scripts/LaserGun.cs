@@ -7,10 +7,10 @@ public class LaserGun : MonoBehaviour
 {
     [SerializeField] private Animator laserAnimator;
     [SerializeField] private AudioClip laserSFX;
-    [SerializeField] private Transform raycastOrigin;
+    [SerializeField] private Transform laserBeamSpawnPoint;
+    [SerializeField] private GameObject laserBeamPrefab;
 
     private AudioSource laserAudioSource;
-    private RaycastHit hit;
 
     private void Awake() 
     {
@@ -25,17 +25,9 @@ public class LaserGun : MonoBehaviour
         //play laser gun SFX
         laserAudioSource.PlayOneShot(laserSFX);
 
-        //raycast
-        if(Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, out hit, 2000f))
-        {
-            if(hit.transform.GetComponent<AsteroidHit>() != null)
-            {
-                hit.transform.GetComponent<AsteroidHit>().AsteroidDestroy();
-            }
-            else if(hit.transform.GetComponent<IRayCastInterface>() != null)
-            {
-                hit.transform.GetComponent<IRayCastInterface>().HitBtRayCast();
-            }
-        }
+        //initialize laser beam object
+        GameObject laserBeam = Instantiate(laserBeamPrefab, laserBeamSpawnPoint.position, laserBeamSpawnPoint.rotation);
+
+        laserBeam.GetComponent<Rigidbody>().velocity = laserBeamSpawnPoint.forward * 70f;
     }
 }

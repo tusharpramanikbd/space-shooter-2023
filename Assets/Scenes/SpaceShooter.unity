@@ -556,7 +556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00cebcc28979845be9f1ac2c4c9bf102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onHitByRayCast:
+  onHitByLaserBeam:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 269231149}
@@ -898,7 +898,8 @@ PrefabInstance:
       value: 270
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3855397916211568730, guid: 342a1b253568e854f9a2e953d07332d3, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3855397916406632483, guid: 342a1b253568e854f9a2e953d07332d3,
         type: 3}
@@ -1153,7 +1154,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laserAnimator: {fileID: 140550807}
   laserSFX: {fileID: 8300000, guid: fa5f15d5c001e1249a46f30914256f91, type: 3}
-  raycastOrigin: {fileID: 862849061}
+  laserBeamSpawnPoint: {fileID: 862849061}
+  laserBeamPrefab: {fileID: 4016273362745119833, guid: 769dd651998a4594f9f3b86844decaff,
+    type: 3}
 --- !u!95 &140550807 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 2193720264661194382, guid: 342a1b253568e854f9a2e953d07332d3,
@@ -1774,7 +1777,8 @@ PrefabInstance:
       value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3855397916211568730, guid: 342a1b253568e854f9a2e953d07332d3, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3855397916406632483, guid: 342a1b253568e854f9a2e953d07332d3,
         type: 3}
@@ -2029,7 +2033,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laserAnimator: {fileID: 179012021}
   laserSFX: {fileID: 8300000, guid: fa5f15d5c001e1249a46f30914256f91, type: 3}
-  raycastOrigin: {fileID: 1578558926}
+  laserBeamSpawnPoint: {fileID: 1578558926}
+  laserBeamPrefab: {fileID: 4016273362745119833, guid: 769dd651998a4594f9f3b86844decaff,
+    type: 3}
 --- !u!95 &179012021 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 2193720264661194382, guid: 342a1b253568e854f9a2e953d07332d3,
@@ -8825,7 +8831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00cebcc28979845be9f1ac2c4c9bf102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onHitByRayCast:
+  onHitByLaserBeam:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1537772731}
@@ -8874,7 +8880,7 @@ GameObject:
   m_Component:
   - component: {fileID: 862849061}
   m_Layer: 0
-  m_Name: Raycast Point
+  m_Name: BulletSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21288,7 +21294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1578558926}
   m_Layer: 0
-  m_Name: Raycast Point
+  m_Name: BulletSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
